@@ -1,0 +1,125 @@
+﻿<Window x:Class="WpfApp1Tour_6AKIF_JaenV.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1Tour_6AKIF_JaenV"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Background="MediumOrchid"
+        Title="TourApp" Height="550" Width="800">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+
+            <MenuItem Header="Kunde" >
+                <MenuItem Header="Kunde bearbeiten" Click="Kundenbearb_Click">
+                    <MenuItem.Style>
+                        <Style TargetType="MenuItem">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </MenuItem.Style>
+                </MenuItem>
+            </MenuItem>
+
+            <MenuItem Header="Buchung">
+                <MenuItem Header="Buchung bearbeiten" Click="Buchungsbearb_Click">
+                    <MenuItem.Style>
+                        <Style TargetType="MenuItem">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </MenuItem.Style>
+                </MenuItem>
+            </MenuItem>
+
+            <MenuItem Header="Tours" >
+                <MenuItem Header="Tour bearbeiten" Click="Tour_Click">
+                    <MenuItem.Style>
+                        <Style TargetType="MenuItem">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </MenuItem.Style>
+                </MenuItem>
+                <MenuItem Header="Treffpunkt anzeigen" Click="Treffanzeigen_Click">
+                    <MenuItem.Style>
+                        <Style TargetType="MenuItem">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </MenuItem.Style>
+                </MenuItem>
+                <MenuItem Header="Treffpunkt bearbeiten" Click="Treffbearb_Click">
+                    <MenuItem.Style>
+                        <Style TargetType="MenuItem">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </MenuItem.Style>
+                </MenuItem>
+                <MenuItem Header="Fremdenführer bearbeiten" Click="Fremdenfbearb_Click">
+                    <MenuItem.Style>
+                        <Style TargetType="MenuItem">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </MenuItem.Style>
+                </MenuItem>
+            </MenuItem>
+
+            <MenuItem Header="Statistik">
+                <MenuItem Header="Buchungsanzahl pro Tour" Click="StatTour_Click">
+                    <MenuItem.Style>
+                        <Style TargetType="MenuItem">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </MenuItem.Style>
+                </MenuItem>
+                
+            </MenuItem>
+
+            <MenuItem Header="Über uns" Click="About_Click"/>
+
+            <MenuItem Header="Wähle eine Farbe aus">
+                <ComboBox Name="cbfarben" SelectionChanged="cbfarbeselect" >
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Ellipse Fill="{Binding Name}" Width="35" Height="15" Margin="5"/>
+                                <TextBlock Text="{Binding Name}" FontSize="25"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+            </MenuItem>            
+            
+        </Menu>
+        <Grid x:Name="contentcontrol"/>
+       
+    </DockPanel>
+   
+</Window>

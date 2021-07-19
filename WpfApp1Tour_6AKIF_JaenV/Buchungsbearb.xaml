@@ -1,0 +1,122 @@
+﻿<UserControl x:Class="WpfApp1Tour_6AKIF_JaenV.Buchungsbearb"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp1Tour_6AKIF_JaenV"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="800"
+             Background="Beige"
+             Loaded="UserControl_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Treffpunkt anzeigen"
+                  Margin="5 9 0 5" FontSize="16" FontWeight="Bold"  />
+        
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Tourname" Margin="0 5 0 5" FontWeight="Bold" FontSize="13" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="Buchung ID - Kunde ID - Kundenname" Margin="0 5 0 5" FontWeight="Bold" FontSize="13" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="1" Grid.Column="2" Text="Buchungsdaten" Margin="0 5 0 5" FontWeight="Bold" FontSize="13" HorizontalAlignment="Center"/>
+
+        <ListBox x:Name="litourname" Grid.Row="2" Grid.Column="0"
+                 DisplayMemberPath="To_Bezeichnung" SelectedValuePath="To_Tour_Id"/>
+
+        <ListBox x:Name="libuchung" Grid.Row="2" Grid.Column="1"
+                 ItemsSource="{Binding ElementName=litourname, Path=SelectedItem.Buchungs}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Path=B_Buchung_Id}" Margin="0 0 0 3"/>
+                        <TextBlock Text=" - " Padding="0 0 0 3"/>
+                        <TextBlock Text="{Binding Path=B_K_Kunde_Id}" Margin="0 0 0 3" Padding="3"/>
+                        <TextBlock Text="{Binding Path=Kunde.K_Vorname}" Margin="0 0 0 3" Padding="3"/>
+                        <TextBlock Text=" "/>
+                        <TextBlock Text="{Binding Path=Kunde.K_Nachname}" Margin="0 0 0 3" Padding="3"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <!--Originales Projekt-->
+        
+        <!--<StackPanel Grid.Row="2" Grid.Column="2" Margin="12"
+                    DataContext="{Binding ElementName=libuchung, Path=SelectedItem}">
+            <TextBlock  Text="Buchung_ID" Margin=" 0 0 0 3" Padding="3"/>
+            <TextBox IsReadOnly="True" Text="{Binding Path=B_Buchung_Id}" Margin="0 0 0 3" Padding="3"/>
+            <TextBlock Text="Datum" />
+            <DatePicker Text="{Binding Path=B_Datum}" />
+            <TextBlock Text="Kunden ID"/>
+            <TextBox Text="{Binding Path=Kunde.K_Kunde_Id}"/>
+            <TextBlock Text="Kundenname"/>
+            <TextBox Text="{Binding Path=Kunde.K_Vorname}"/>
+            <TextBlock Text="Nachname" />
+            <TextBox Text="{Binding Path=Kunde.K_Nachname}" />
+            <TextBlock Text="E-Mail des Kundes" />
+            <TextBox Text="{Binding Path=Kunde.K_Email}" />
+            <TextBlock Text="Personenanzahl" />
+            <TextBox Text="{Binding Path=B_Personenanzahl}" />
+            <TextBlock Text="Preis" />
+            <TextBox Text="{Binding Path=B_Preis}" />-->
+
+        <!--Bearbeitung: ComboBox im StackPanel hinzugefügen: Kunden ID und Sprache-->
+            <StackPanel Grid.Row="2" Grid.Column="2" Margin="12"
+                    DataContext="{Binding ElementName=libuchung, Path=SelectedItem}">
+            <TextBlock  Text="Buchung_ID" Margin=" 0 0 0 3" Padding="3"/>
+            <TextBox IsReadOnly="True" Text="{Binding Path=B_Buchung_Id}" Margin="0 0 0 3" Padding="3"/>
+            <TextBlock Text="Datum" />
+            <DatePicker Text="{Binding Path=B_Datum}" />
+            <TextBlock Text="Kunden ID"/>
+            <ComboBox x:Name="cbKundeId" Grid.Row="2"   Grid.Column="2"
+                      SelectedValue="{Binding Path=B_K_Kunde_Id}"
+                      SelectedValuePath="K_Kunde_Id">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Path=K_Vorname}"/>
+                            <TextBlock Text="{Binding Path=K_Nachname}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <TextBlock Text="Kundenname"/>
+
+            <TextBlock Text="Nachname" />
+            <TextBlock Text="{Binding Path=Kunde.K_Nachname}" />
+            <TextBlock Text="E-Mail des Kundes" />
+            <TextBox Text="{Binding Path=Kunde.K_Email}" />
+            <TextBlock Text="Personenanzahl" />
+            <TextBox Text="{Binding Path=B_Personenanzahl}" />
+            <TextBlock Text="Preis" />
+            <TextBox Text="{Binding Path=B_Preis}" />
+
+            <TextBlock Text="Sprache" />
+            <!--<TextBox Text="{Binding Path=B_S_Sprach_Id}" />-->
+            <ComboBox x:Name="cbsprache" Grid.Row="2"   Grid.Column="2"
+                      SelectedValue="{Binding Path=B_S_Sprach_Id}"
+                      SelectedValuePath="S_Sprach_Id">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Path=S_Language}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <Button x:Name="Btnnew_Buchung" Content="Buchung hinzufügen" Click="NewBuchung_Click" Margin="5 12 5 3" Padding="5"/>
+            <Button x:Name="Btndelete_Buchung" Content="Lösche Buchung" Click="DeleteBuchung_Click" Margin="5 5 5 3" Padding="5"/>
+            <Button x:Name="Btnsave_Buchung" Content="Speichern" Click="SaveBuchung_Click" Margin="5 5 5 3" Padding="5"/>
+            <TextBlock x:Name="fehler" TextWrapping="Wrap"/>
+        </StackPanel>
+        
+    </Grid>
+</UserControl>
